@@ -1,0 +1,9 @@
+{
+  "evaluated": [
+    "classical",
+    "distilbert",
+    "dspy_baseline",
+    "dspy_optimized"
+  ],
+  "pending": []
+}

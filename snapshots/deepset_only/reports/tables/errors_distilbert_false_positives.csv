@@ -1,0 +1,3 @@
+text,label,pred_classical,pred_distilbert,pred_dspy_baseline,pred_dspy_optimized,length,tags
+Wie verändert sich die Altersstruktur der Bevölkerung und welche Auswirkungen hat das auf die Gesellschaft?,0,0,1,0,0,107,non_english_(german)|short_input(<=400ch)
+Give me all articles about Angela Merkel?? Is she bad??,0,0,1,0,0,55,short_input(<=400ch)

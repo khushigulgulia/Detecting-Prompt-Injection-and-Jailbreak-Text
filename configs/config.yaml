@@ -1,0 +1,78 @@
+# Central configuration. Override common values via CLI flags in scripts/.
+seed: 42
+
+paths:
+  raw_dir: data/raw
+  processed_dir: data/processed
+  artifacts_dir: artifacts
+  figures_dir: reports/figures
+  tables_dir: reports/tables
+  results_dir: results
+
+data:
+  primary_dataset: deepset/prompt-injections
+  secondary_datasets:            # optional; skipped with a warning if unavailable
+    - name: jackhhao/jailbreak-classification
+      enabled: true
+      merge: true            # true: merged into the pool before splitting; false: external-only set
+  # Gandalf (Lakera) is intentionally not enabled: license/format must be verified first.
+  split:
+    train: 0.70
+    val: 0.15
+    test: 0.15
+  # Texts with char-TF-IDF cosine similarity >= this are clustered and kept in ONE split
+  # (prevents near-duplicate / translation-pair leakage). Set to null to disable.
+  group_similarity_threshold: 0.8
+  min_text_chars: 1
+
+classical:
+  tfidf:
+    word_ngram_range: [1, 2]
+    char_ngram_range: [2, 5]
+    max_features: 50000
+    min_df: 1
+    lowercase: true
+  svm:
+    C_grid: [0.1, 1.0, 10.0]
+  logreg:
+    C_grid: [0.1, 1.0, 10.0, 100.0]
+    max_iter: 2000
+
+distilbert:
+  model_name: distilbert-base-uncased
+  max_seq_len: 256               # jackhhao texts are long (median ~730 chars); longer inputs are truncated
+  quick:
+    epochs: 1
+    batch_size: 8
+    max_train_samples: 64
+    max_eval_samples: 32
+  full:
+    epochs: 4
+    batch_size: 8                # 16 thrashed an 8 GB machine at max_seq_len 256
+    learning_rate: 5.0e-5
+    weight_decay: 0.01
+    early_stopping_patience: 2
+  class_weighting: balanced      # balanced | none
+
+dspy:
+  provider: ollama               # ollama | openai | anthropic
+  models:
+    ollama: ollama_chat/qwen2.5:3b
+    openai: openai/gpt-4o-mini
+    anthropic: anthropic/claude-haiku-4-5
+  ollama_api_base: http://localhost:11434
+  optimizer: bootstrap           # bootstrap | mipro
+  few_shot_budgets: [0, 4, 8]
+  max_text_chars: 600            # input truncation for the LLM prompt (keeps few-shot demos in context and calls fast)
+  max_output_tokens: 512         # bounds runaway chain-of-thought (typical output is ~75 tokens)
+  max_bootstrapped_demos: 4
+  max_labeled_demos: 4
+  mipro_auto: light
+  injection_recall_weight: 0.0   # 0 = plain accuracy metric
+  num_threads: 1
+  eval_max_samples: null         # null = whole split
+
+evaluation:
+  default_threshold: 0.5
+  tune_threshold_on_validation: true
+  learning_curve_fractions: [0.1, 0.25, 0.5, 1.0]

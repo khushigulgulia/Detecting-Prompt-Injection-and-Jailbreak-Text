@@ -1,0 +1,16 @@
+model,tag,errors_with_tag,test_examples_with_tag
+classical,short_input(<=400ch),6,96
+distilbert,short_input(<=400ch),3,96
+distilbert,non_english_(german),1,16
+dspy_baseline,short_input(<=400ch),19,96
+dspy_baseline,non_english_(german),5,16
+dspy_baseline,instruction_override_phrasing,4,8
+dspy_baseline,roleplay_or_persona,2,5
+dspy_baseline,long_input(>400ch),2,3
+dspy_baseline,prompt_reveal_request,1,1
+dspy_baseline,multiline,1,1
+dspy_optimized,short_input(<=400ch),14,96
+dspy_optimized,non_english_(german),6,16
+dspy_optimized,roleplay_or_persona,3,5
+dspy_optimized,long_input(>400ch),3,3
+dspy_optimized,instruction_override_phrasing,1,8

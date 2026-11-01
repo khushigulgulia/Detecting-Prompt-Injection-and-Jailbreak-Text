@@ -1,0 +1,118 @@
+{
+  "provider": "ollama",
+  "model": "ollama_chat/qwen2.5:3b",
+  "optimizer": "bootstrap",
+  "n_opt_train": 32,
+  "max_text_chars": 600,
+  "n_val_eval": 80,
+  "n_test_eval": 296,
+  "seed": 42,
+  "budget_sweep_val": [
+    {
+      "k_demos": 0,
+      "val_accuracy": 0.65,
+      "n": 80,
+      "n_errors": 1,
+      "latency_s_mean": 3.4727889260495433,
+      "latency_s_median": 3.1425908124983835,
+      "total_time_s": 277.82311408396345,
+      "prompt_tokens": 33277,
+      "completion_tokens": 6539,
+      "cost_usd": 0.0,
+      "cost_usd_per_1000": 0.0,
+      "tokens_per_1000": 497700.0
+    },
+    {
+      "k_demos": 4,
+      "val_accuracy": 0.6625,
+      "n": 80,
+      "n_errors": 1,
+      "latency_s_mean": 4.625394184912238,
+      "latency_s_median": 3.735075896001945,
+      "total_time_s": 370.0315347929791,
+      "prompt_tokens": 91501,
+      "completion_tokens": 8431,
+      "cost_usd": 0.0,
+      "cost_usd_per_1000": 0.0,
+      "tokens_per_1000": 1249150.0
+    },
+    {
+      "k_demos": 8,
+      "val_accuracy": 0.75,
+      "n": 80,
+      "n_errors": 1,
+      "latency_s_mean": 3.7721812874375247,
+      "latency_s_median": 3.5146163954996155,
+      "total_time_s": 301.77450299500197,
+      "prompt_tokens": 131352,
+      "completion_tokens": 6621,
+      "cost_usd": 0.0,
+      "cost_usd_per_1000": 0.0,
+      "tokens_per_1000": 1724662.5
+    }
+  ],
+  "baseline_val_stats": {
+    "n": 80,
+    "n_errors": 1,
+    "latency_s_mean": 3.456284373937797,
+    "latency_s_median": 3.204343978999532,
+    "total_time_s": 276.50274991502374,
+    "prompt_tokens": 33277,
+    "completion_tokens": 6539,
+    "cost_usd": 0.0,
+    "cost_usd_per_1000": 0.0,
+    "tokens_per_1000": 497700.0
+  },
+  "baseline_test_stats": {
+    "n": 296,
+    "n_errors": 4,
+    "latency_s_mean": 3.588979592250055,
+    "latency_s_median": 3.173598771001707,
+    "total_time_s": 1062.3379593060163,
+    "prompt_tokens": 124359,
+    "completion_tokens": 25502,
+    "cost_usd": 0.0,
+    "cost_usd_per_1000": 0.0,
+    "tokens_per_1000": 506287.1621621622
+  },
+  "optimization_time_s": 23.941679083000054,
+  "optimized_val_stats": {
+    "n": 80,
+    "n_errors": 2,
+    "latency_s_mean": 3.9075275541502377,
+    "latency_s_median": 3.7738208125010715,
+    "total_time_s": 312.602204332019,
+    "prompt_tokens": 77319,
+    "completion_tokens": 7423,
+    "cost_usd": 0.0,
+    "cost_usd_per_1000": 0.0,
+    "tokens_per_1000": 1059275.0
+  },
+  "optimized_test_stats": {
+    "n": 296,
+    "n_errors": 2,
+    "latency_s_mean": 4.030568287564534,
+    "latency_s_median": 3.673763021499326,
+    "total_time_s": 1193.048213119102,
+    "prompt_tokens": 285427,
+    "completion_tokens": 28391,
+    "cost_usd": 0.0,
+    "cost_usd_per_1000": 0.0,
+    "tokens_per_1000": 1060195.945945946
+  },
+  "environment": {
+    "timestamp": "2026-10-28T12:09:20.331398+00:00",
+    "python": "3.11.15",
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "packages": {
+      "pandas": "3.1.0",
+      "numpy": "2.4.6",
+      "scikit-learn": "1.9.1",
+      "torch": "2.14.1",
+      "transformers": "5.21.0",
+      "datasets": "5.1.0",
+      "dspy": "3.4.1",
+      "matplotlib": "3.11.2"
+    }
+  }
+}

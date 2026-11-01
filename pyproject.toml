@@ -1,0 +1,9 @@
+[project]
+name = "prompt-injection-detection"
+version = "0.1.0"
+description = "Comparison of TF-IDF+SVM, DistilBERT and DSPy for prompt injection detection"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

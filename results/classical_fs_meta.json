@@ -1,0 +1,17 @@
+{
+  "n_all_features": 100000,
+  "chi2_best": {
+    "k": 5000,
+    "C": 10.0,
+    "val_f1": 0.96,
+    "selected_by_vectorizer": {
+      "char": 3080,
+      "word": 1920
+    }
+  },
+  "l1_best": {
+    "C": 10.0,
+    "nonzero": 497,
+    "val_f1": 0.9523809523809523
+  }
+}

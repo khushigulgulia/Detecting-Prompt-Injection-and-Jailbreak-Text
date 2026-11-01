@@ -1,0 +1,9 @@
+model,error_type,count
+classical,false_positive,4
+classical,false_negative,2
+distilbert,false_positive,2
+distilbert,false_negative,1
+dspy_baseline,false_positive,1
+dspy_baseline,false_negative,20
+dspy_optimized,false_positive,6
+dspy_optimized,false_negative,11

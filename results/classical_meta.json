@@ -1,0 +1,68 @@
+{
+  "name": "classical",
+  "selected": {
+    "model": "svm",
+    "C": 10.0,
+    "val_f1": 0.9555555555555556
+  },
+  "score_type": "svm_margin",
+  "default_threshold": 0.0,
+  "grid": [
+    {
+      "model": "svm",
+      "C": 0.1,
+      "val_f1": 0.924812030075188
+    },
+    {
+      "model": "svm",
+      "C": 1.0,
+      "val_f1": 0.9520295202952029
+    },
+    {
+      "model": "svm",
+      "C": 10.0,
+      "val_f1": 0.9555555555555556
+    },
+    {
+      "model": "logreg",
+      "C": 0.1,
+      "val_f1": 0.8671875
+    },
+    {
+      "model": "logreg",
+      "C": 1.0,
+      "val_f1": 0.924812030075188
+    },
+    {
+      "model": "logreg",
+      "C": 10.0,
+      "val_f1": 0.9407407407407408
+    },
+    {
+      "model": "logreg",
+      "C": 100.0,
+      "val_f1": 0.9523809523809523
+    }
+  ],
+  "train_time_s_including_grid_search": 10.415460417003487,
+  "batch_latency_ms_per_sample": 0.9154815607945312,
+  "single_sample_latency_ms": 0.6917495011293795,
+  "throughput_samples_per_s": 1092.321290591715,
+  "model_size_mb": 4.549121,
+  "n_train": 1362,
+  "environment": {
+    "timestamp": "2026-10-28T10:11:58.694294+00:00",
+    "python": "3.11.15",
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "packages": {
+      "pandas": "3.1.0",
+      "numpy": "2.4.6",
+      "scikit-learn": "1.9.1",
+      "torch": "2.14.1",
+      "transformers": "5.21.0",
+      "datasets": "5.1.0",
+      "dspy": "3.4.1",
+      "matplotlib": "3.11.2"
+    }
+  }
+}

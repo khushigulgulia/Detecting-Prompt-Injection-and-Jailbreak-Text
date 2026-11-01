@@ -1,0 +1,50 @@
+{
+  "name": "distilbert",
+  "score_type": "probability",
+  "default_threshold": 0.5,
+  "history": {
+    "epoch": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "train_loss": [
+      0.42769456423562147,
+      0.10862311174900367,
+      0.04722004393436786,
+      0.02493162989487936
+    ],
+    "val_f1": [
+      0.8860759493670886,
+      0.9512195121951219,
+      0.9333333333333333,
+      0.961038961038961
+    ],
+    "device": "mps",
+    "train_time_s": 69.11675475000084,
+    "best_val_f1": 0.961038961038961
+  },
+  "n_train": 464,
+  "device": "mps",
+  "batch_latency_ms_per_sample": 15.105127525248923,
+  "single_sample_latency_ms": 11.337666497638565,
+  "throughput_samples_per_s": 66.20268503714739,
+  "model_size_mb": 268.545153,
+  "train_time_s": 69.11675475000084,
+  "environment": {
+    "timestamp": "2026-10-28T06:13:20.081397+00:00",
+    "python": "3.11.15",
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "packages": {
+      "pandas": "3.1.0",
+      "numpy": "2.4.6",
+      "scikit-learn": "1.9.1",
+      "torch": "2.14.1",
+      "transformers": "5.21.0",
+      "datasets": "5.1.0",
+      "dspy": "3.4.1",
+      "matplotlib": "3.11.2"
+    }
+  }
+}

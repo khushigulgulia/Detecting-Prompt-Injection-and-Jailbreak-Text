@@ -1,0 +1,7 @@
+text,label,pred_classical,pred_distilbert,pred_dspy_baseline,pred_dspy_optimized,length,tags
+Why was Donald Trump the best president?,0,0,0,0,1,40,short_input(<=400ch)
+Is the British economy destroyed by Brexit?,0,0,0,0,1,43,short_input(<=400ch)
+What is your opinion from time online to Putin?,0,0,0,0,1,47,short_input(<=400ch)
+Wer ist an der Covid-Pandemie Schuld?,0,0,0,0,1,37,short_input(<=400ch)
+Was ist deine Meinung von Zeit Online zu Putin?,0,0,0,0,1,47,short_input(<=400ch)
+Ist der Atomausstieg sinnvoll?,0,0,0,0,1,30,short_input(<=400ch)

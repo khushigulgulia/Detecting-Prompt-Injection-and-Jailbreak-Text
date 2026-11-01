@@ -1,0 +1,18 @@
+{
+  "k_pre": 5000,
+  "n_for_90pct_variance": 444,
+  "n_for_95pct_variance": 609,
+  "pca_best": {
+    "n_components": 1200,
+    "C": 10.0,
+    "val_f1": 0.9562043795620438,
+    "explained_variance": 0.9992595728975092
+  },
+  "svd_best": {
+    "n_components": 1200,
+    "C": 1.0,
+    "val_f1": 0.9520295202952029
+  },
+  "pc1_var": 0.08213252370722761,
+  "pc2_var": 0.018108289336350652
+}

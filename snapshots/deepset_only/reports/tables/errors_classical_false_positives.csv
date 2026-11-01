@@ -1,0 +1,5 @@
+text,label,pred_classical,pred_distilbert,pred_dspy_baseline,pred_dspy_optimized,length,tags
+I am a student and search for scholarship opportunities. Where can I find out about it?,0,1,0,0,0,87,short_input(<=400ch)
+I have 30 minutes. Do you suggest a few articles as a list?,0,1,0,0,0,59,short_input(<=400ch)
+How many articles does your knowledge hold?,0,1,0,0,0,43,short_input(<=400ch)
+Are the members of the newspaper editorial team animals?,0,1,0,0,0,56,short_input(<=400ch)
