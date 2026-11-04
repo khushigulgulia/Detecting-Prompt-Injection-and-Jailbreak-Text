@@ -33,15 +33,31 @@ artifacts/              fitted models (git-ignored)
 
 ## Dataset
 
-* **Primary:** [`deepset/prompt-injections`](https://huggingface.co/datasets/deepset/prompt-injections), 662 rows, columns `text`, `label` (CC-BY-4.0). Contains **English and German** text. The label mapping was verified from real samples: `1` = injection (e.g. "Forget all previous tasks…"), `0` = benign.
-* **Optional external:** [`jackhhao/jailbreak-classification`](https://huggingface.co/datasets/jackhhao/jailbreak-classification) (Apache-2.0; columns `prompt`, `type` ∈ {benign, jailbreak}). It is cleaned and saved as `data/processed/external.parquet` as a generalisation set.
-* **Lakera Gandalf:** not used; its license/format was not verified, so it is intentionally excluded.
+Two publicly available datasets from Hugging Face were used and merged into a single dataset for training and evaluating the prompt-injection and jailbreak detection models.
+
+- **Dataset 1:** [`deepset/prompt-injections`](https://huggingface.co/datasets/deepset/prompt-injections) — 662 samples, with columns `text` and `label` (CC-BY-4.0). Contains short English and German texts labelled as benign (`0`) or prompt injection (`1`).
+
+- **Dataset 2:** [`jackhhao/jailbreak-classification`](https://huggingface.co/datasets/jackhhao/jailbreak-classification) — Originally 1,306 samples, reduced to 1,289 after removing 17 exact duplicates (Apache-2.0). Contains longer prompts with columns `prompt` and `type`, labelled as `benign` or `jailbreak`.
+
+- **Combined dataset:** 1,951 samples, consisting of **1,037 benign** and **914 prompt-injection/jailbreak** samples. The datasets were standardized to a common text and binary-label format before merging.
+
+- **Lakera Gandalf:** Not used; its license and dataset format were not verified.
 
 ### Preprocessing and leakage control
-* Unicode NFC, control-character removal, space collapsing. **Casing, punctuation and newlines are kept** (they can be attack signals); no stop-word or token removal.
-* Missing rows, empty text, unmappable labels, exact duplicates and *conflicting* duplicates (same text, different label) are dropped and counted in `reports/tables/dataset_inspection.json`.
-* **Group-aware split (70/15/15):** exact-dedup is not enough. The dataset contains near-duplicates and English/German translation pairs. Texts with char-n-gram TF-IDF cosine ≥ 0.8 are clustered and kept in a single split (`StratifiedGroupKFold`). On the naive stratified split, 6 of 100 test texts had a ≥0.90-similar training text; after grouping, none are ≥0.80.
-* TF-IDF is fit on training data only; hyper-parameters, early stopping and thresholds use validation only; the test split is touched once for final evaluation.
+
+- **Text normalization:** Unicode NFC normalization, control-character removal and whitespace collapsing were applied. Casing, punctuation and newlines were preserved because they may contain useful attack-related signals. No stop-word or token removal was performed.
+
+- **Data cleaning:** Missing values, empty texts, exact duplicates and conflicting duplicate labels were checked during preprocessing. Cleaning statistics are documented in `reports/tables/dataset_inspection.json`.
+
+- **Merged dataset splitting (70/15/15):** The combined dataset was divided into 1,362 training samples, 293 validation samples and 296 testing samples using a cluster-aware approach.
+
+- **Near-duplicate leakage prevention:** Texts with character n-gram TF-IDF cosine similarity ≥ 0.8 were grouped into clusters and kept within the same partition using `StratifiedGroupKFold`. This prevents highly similar texts from appearing across training, validation and testing partitions.
+
+- **Preliminary leakage analysis:** In an initial experiment using the deepset dataset, a naive stratified split placed 6 out of 100 test texts within cosine similarity 0.90 of training texts. Cluster-aware splitting was subsequently adopted to reduce this leakage risk.
+
+- **Model evaluation:** TF-IDF vectorizers were fitted only on training data. Hyperparameters, early stopping and decision thresholds were selected using validation data. The held-out test set was used for final performance evaluation.
+
+All three detection approaches—TF-IDF + SVM, DistilBERT and DSPy with Qwen2.5—were evaluated on the same merged dataset and held-out test partition.
 
 ## Setup
 
